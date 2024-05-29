@@ -8,6 +8,8 @@ namespace MinhaApi.DTOs.Mapping
         public ProductMapper() 
         {
             CreateMap<ProductDTO, Product>().ReverseMap();
+            CreateMap<ProductDTOUpdateRequest, Product>().ReverseMap();
+            CreateMap<Product, ProductDTOUpdateResponse>();
         }
     }
 }

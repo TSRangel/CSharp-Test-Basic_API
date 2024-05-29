@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(options =>
     options.Filters.Add(typeof(ApiExceptionFilter))).AddJsonOptions(
-    options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+    options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
+    .AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -22,10 +23,10 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
-{
-    LogLevel = LogLevel.Information
-}));
+//builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
+//{
+//    LogLevel = LogLevel.Information
+//}));
 
 builder.Services.AddAutoMapper(typeof(Program));
 
